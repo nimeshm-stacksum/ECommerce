@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+    id="report_client_card"
+    string="Client Card"
+    model="ecommerce.client"
+    report_type="qweb-pdf"
+    name="E-Commerce.report_client"
+    file="E-Commerce.report_client"/>
+</odoo>
