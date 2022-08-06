@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- tree view of the product model -->
+    <record id="product_tree" model="ir.ui.view">
+        <field name="name">ecommerce.product.tree</field>
+        <field name="model">ecommerce.product</field>
+        <field name="arch" type="xml">
+            <tree string="Product">
+                <!-- <field name="name"/> -->
+                <field name="product_name"/>
+                <field name="product_company"/>
+                <field name="product_price"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view of the product model -->
+    <record id="product_form" model="ir.ui.view">
+        <field name="name">ecommerce.product.form</field>
+        <field name="model">ecommerce.product</field>
+        <field name="arch" type="xml">
+            <form string="Product">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="product_name"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="product_company"/>
+                        <field name="product_price"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- action of the product menu -->
+    <record id="action_product" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ecommerce.product</field>
+        <field name="view_mode">tree,form</field>
+    
+        <field name="context">{'search_default_my_quotation': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create Your First Product !
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="ecommerce_root" name="E-Commerce" web_icon="E-Commerce,static/description/icon.png"/>
+    <menuitem id="ecommerce_product" name="Product Detail" parent="ecommerce_root" action="action_product"/>
+</odoo>

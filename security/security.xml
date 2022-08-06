@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.rule" id="client_record_rule">
+        <field name="name">See only His Client</field>
+        <field name="model_id" ref="model_ecommerce_client"/>
+        <!-- <field name="domain_force">[]</field> -->
+        <!-- <field name="groups" eval="[(4, ref('group_ecommerce_product'))]"/> -->
+    </record>
+
+</odoo>
