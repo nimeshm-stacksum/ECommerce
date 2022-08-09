@@ -39,6 +39,12 @@ class Client(models.Model):
             'target':'current',            
         }
 
+    # Send Mail using Mail Template
+    def send_client_card(self):
+        template_id = self.env.ref('E-Commerce.client_card_email_template').id
+        template = self.env['mail.template'].browse(template_id)
+        template.send_mail(self.id, force_send=True)
+
     def get_order_count(self):
         count = self.env['ecommerce.order'].search_count([('client_id', '=', self.id)])
         self.order_count = count
@@ -52,7 +58,9 @@ class Client(models.Model):
     notes = fields.Text(string='Notes')
     image = fields.Char(string='Image')
     order_count = fields.Integer(string='Order', compute='get_order_count')
-    active= fields.Boolean("Active", default=True)
+    active = fields.Boolean("Active", default=True)
+    user_id = fields.Many2one('res.users', string="PRO")
+    email = fields.Char(string="Email")
     # product_id = fields.Many2one('ecommerce.product', string='Product')
 
     @api.model

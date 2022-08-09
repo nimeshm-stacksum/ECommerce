@@ -112,4 +112,5 @@
 
     <menuitem id="ecommerce_root" name="E-Commerce" web_icon="E-Commerce,static/description/icon.png"/>
     <menuitem id="ecommerce_order" name="Order History" parent="ecommerce_root" action="action_order"/>
+    <menuitem id="action_create_order" name="Create Order" parent="ecommerce_root" action="action_create_order_wizard"/>
 </odoo>

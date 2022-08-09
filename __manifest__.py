@@ -17,6 +17,7 @@
         'security/ir.model.access.csv',
         'security/security.xml',
         'data/sequence.xml',
+        'data/mail_template.xml',
         'reports/reports.xml',
         'reports/client_card.xml'
     ],

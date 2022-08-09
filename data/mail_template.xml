@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="1">
+        <record id="client_card_email_template" model="mail.template">
+            <field name="name">Client Card: Send by email</field>
+            <field name="model_id" ref="E-Commerce.model_ecommerce_client"/>
+            <field name="email_from">{{ (object.user_id.email_formatted) }}</field>
+            <field name="email_to">{{ object.email }}</field>
+            <field name="subject">Client Card (Ref ${{ object.name_seq }})</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        Dear {{ object.client_name }}
+                        <br /><br />
+                        Here is your client card with reference $(object.name_seq)
+                        <br /><br />
+                        Phone No. :  {{ object.client_phone }}
+                        <br /><br />
+                        If you have queries free to ask.
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="report_client_card"/>
+            <field name="report_name">Client Card_${{ (object.name_seq)}}</field>
+            <!-- <field name="lang">${{ object.partner_id.lang }}</field>
+            <field name="auto_delete" eval="True"/> -->
+        </record>
+    </data>
+
+</odoo>
