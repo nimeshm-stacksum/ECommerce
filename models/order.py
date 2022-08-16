@@ -26,17 +26,13 @@ class EcommerceOrder(models.Model):
     extra_service = fields.Text(string='Note')
     order_date = fields.Date(string='Date', required=True)
     state = fields.Selection([
-        ('draft', 'Draft'),
-        ('pending', 'Pending'),
-        ('done', 'Done'),
+        ('cart', 'Cart'),
+        ('delivered', 'Delivered'),
         ('cancel', 'Cancelled')
-        ], string='Status', readonly=True, default='draft', tracking=True)
+        ], string='Status', readonly=True, default='cart', tracking=True)
 
-    def action_pending(self):
-        self.state = 'pending'
-
-    def action_done(self):
-        self.state = 'done'
+    def action_Delivered(self):
+        self.state = 'delivered'
 
     def action_cancel(self):
         self.state = 'cancel'

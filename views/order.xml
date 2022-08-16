@@ -25,11 +25,10 @@
             <form string="order">
                 <sheet>
                     <header>
-                        <button id="button_pending" name="action_pending" string="Pending" class="btn-primary" states="draft" confirm="Are you sure that you need to pending ?" type="object"/>
-                        <button id="button_done" name="action_done" string="Done" class="btn-primary" states="pending" confirm="Are you sure that you need to Done ?" type="object"/>
-                        <button id="button_cancel" name="action_cancel" string="Cancel" states="done" confirm="Are you sure that you need to cancel ?" type="object"/>
+                        <button id="button_delivered" name="action_Delivered" string="Delivered" class="btn-primary" states="cart" confirm="Are you sure that you need to Delivered order?" type="object"/>
+                        <button id="button_cancel" name="action_cancel" string="Cancel" states="delivered" confirm="Are you sure that you need to cancel this order?" type="object"/>
                         <!-- <button name="action_url" string="Open URL" class="btn-primary" type="object"/> -->
-                        <field name="state" widget="statusbar" statusbar_visible = "draft,pending,done,cancel"/>
+                        <field name="state" widget="statusbar" statusbar_visible = "cart,delivered,cancel"/>
                     </header>
 
                     <!-- <div>
@@ -95,7 +94,7 @@
         </field>
     </record>
 
-    <!-- action of the order menu -->
+    <!-- Mainmenu of the order history -->
     <record id="action_order" model="ir.actions.act_window">
         <field name="name">Order</field>
         <field name="type">ir.actions.act_window</field>
@@ -110,7 +109,59 @@
         </field>
     </record>
 
+    <!-- Submenu of the order for All histoty -->
+    <record id="action_all_order" model="ir.actions.act_window">
+        <field name="name">All Order</field>
+        <field name="res_model">ecommerce.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate Customer Details
+            </p>
+        </field>
+    </record>
+    <!-- Submenu of the order histoty for Cart Order -->
+    <record id="action_cart_order" model="ir.actions.act_window">
+        <field name="name">Cart Order</field>
+        <field name="res_model">ecommerce.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','cart')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate Customer Details
+            </p>
+        </field>
+    </record>
+    <!-- Submenu of the order histoty for Delivered Order -->
+    <record id="action_delivered_order" model="ir.actions.act_window">
+        <field name="name">Delivered Order</field>
+        <field name="res_model">ecommerce.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','delivered')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate Customer Details
+            </p>
+        </field>
+    </record>
+    <!-- Submenu of the order histoty for Cancelled Order -->
+    <record id="action_cancelled_order" model="ir.actions.act_window">
+        <field name="name">Cancelled Order</field>
+        <field name="res_model">ecommerce.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('state','=','cancel')]</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Generate Customer Details
+            </p>
+        </field>
+    </record>
+
     <menuitem id="ecommerce_root" name="E-Commerce" web_icon="E-Commerce,static/description/icon.png"/>
-    <menuitem id="ecommerce_order" name="Order History" parent="ecommerce_root" action="action_order"/>
     <menuitem id="action_create_order" name="Create Order" parent="ecommerce_root" action="action_create_order_wizard"/>
+    <menuitem id="ecommerce_order" name="Order History" parent="ecommerce_root" action="action_order"/>
+    <menuitem id="ecommerce_all_order" name="All Order" parent="ecommerce_order" action="action_all_order"/>
+    <menuitem id="ecommerce_cart_order" name="Cart Order" parent="ecommerce_order" action="action_cart_order"/>
+    <menuitem id="ecommerce_delivered_order" name="Delivered Order" parent="ecommerce_order" action="action_delivered_order"/>
+    <menuitem id="ecommerce_cancelled_order" name="Cancelled Order" parent="ecommerce_order" action="action_cancelled_order"/>
 </odoo>
